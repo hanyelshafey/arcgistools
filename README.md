@@ -1,2 +1,2 @@
 # arcgistools
-tools for 
+tools for arcpro and arcgis 

@@ -1,5 +1,4 @@
 ﻿# Enter your Queary
-lyrname = input ("Enter your id")
 row_id = input ("Enter your id")
 
 # Set arcgisproject , main Map
@@ -10,10 +9,10 @@ mainMap = aprx.listMaps("Map")[0]
 lyt = aprx.listLayouts()[0]
 lyt.name
 # 'Layout1'
-countriesLayerMain = mainMap.listLayers(f"{lyrname}")[0]
-countriesLayerMain.definitionQuery = f"id = '{row_id}'"
-mainMapFrame = lyt.listElements('MAPFRAME_ELEMENT',"Main Map Frame")[0]
-selCountryExtent = mainMapFrame.getLayerExtent(countriesLayerMain)
-mainMapFrame.camera.setExtent(selCountryExtent)
+parcelLayerMain = mainMap.listLayers("parcel")[0]
+parcelLayerMain.definitionQuery = f"parcel_id = '{row_id}'"
+mainMapFrame = lyt.listElements('MAPFRAME_ELEMENT',"Map Frame")[0]
+selParcelExtent = mainMapFrame.getLayerExtent(parcelLayerMain)
+mainMapFrame.camera.setExtent(selParcelExtent)
 mainMapFrame.camera.scale=mainMapFrame.camera.scale * 1.05
-
+lyt.exportToJPEG(f"G:\{row_id}.jpg")
